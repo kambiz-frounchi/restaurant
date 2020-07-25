@@ -53,7 +53,7 @@ app.use(`/`, require(`./routes/tables`));
 app.use(`/waitlist`, require(`./routes/waitlist`));
 
 app.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname, "home.html"));
+  res.sendFile(path.join(__dirname, "html/home.html"));
 });
 
 
