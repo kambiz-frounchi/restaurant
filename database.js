@@ -11,7 +11,7 @@ class Database {
         return JSON.parse(file);
     };
 
-    setTables(array) {
+    setTables = array => {
         let data = JSON.stringify(array);
         fs.writeFileSync("tables.json", data, (err) => {
             if(err)
@@ -19,7 +19,7 @@ class Database {
         });
     }
 
-    getWaitlist () {
+    getWaitlist = () => {
         let file = fs.readFileSync("waitlist.json", 'utf8');
         return JSON.parse(file);
     }
