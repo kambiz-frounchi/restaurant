@@ -1,6 +1,1 @@
-reservation 
-
-table = reservation + table #
-
-waitlist = array of reservations 
-tables = array of tables
+[]

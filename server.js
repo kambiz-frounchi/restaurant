@@ -3,6 +3,8 @@
 // =============================================================
 var express = require("express");
 var path = require("path");
+const Database = require('./database');
+const db = new Database();
 
 
 // Sets up the Express App
@@ -15,46 +17,19 @@ var PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-/*
-// Star Wars Characters (DATA)
-// =============================================================
-var characters = [
-  {
-    routeName: "yoda",
-    name: "Yoda",
-    role: "Jedi Master",
-    age: 900,
-    forcePoints: 2000
-  },
-  {
-    routeName: "darthmaul",
-    name: "Darth Maul",
-    role: "Sith Lord",
-    age: 200,
-    forcePoints: 1200
-  },
-  {
-    routeName: "obiwankenobi",
-    name: "Obi Wan Kenobi",
-    role: "Jedi Master",
-    age: 55,
-    forcePoints: 1350
-  }
-];
-*/
-
 // Routes
-// =============================================================
-
-// Basic route that sends the user first to the AJAX Page
-
 app.use(`/reserve`, require(`./routes/reserve`));
 app.use(`/`, require(`./routes/tables`));
-app.use(`/waitlist`, require(`./routes/waitlist`));
+app.use(`/`, require(`./routes/waitlist`));
 
 app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname, "html/home.html"));
 });
+
+app.delete("/api/clear", (req,res) => {
+  db.clearDb();
+  res.sendFile(path.join(__dirname, "html/home.html"));
+})
 
 
 /*
